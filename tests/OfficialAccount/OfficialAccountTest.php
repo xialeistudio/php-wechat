@@ -30,14 +30,37 @@ class OfficialAccountTest extends TestCase
 
         $this->officialAccount = new OfficialAccount(
             getenv('OFFICIAL_ACCOUNT_APPID'),
-            getenv('OFFICIAL_ACCOUNT_SECRET')
+            getenv('OFFICIAL_ACCOUNT_SECRET'),
+            ['token' => getenv('OFFICIAL_ACCOUNT_TOKEN')]
         );
     }
 
     public function testToken()
     {
         $data = $this->officialAccount->token();
-        $this->assertArrayHasKey('access_token', $data);
-        $this->assertArrayHasKey('expires_in', $data);
+        $this->assertTrue(is_string($data));
+    }
+
+    public function testMenuCreate()
+    {
+        $menu = [
+            'button' => [
+                [
+                    'type' => 'view',
+                    'name' => '博客',
+                    'url' => 'https://www.ddhigh.com'
+                ]
+            ]
+        ];
+        $data = $this->officialAccount->menuCreate($menu);
+
+        $this->assertEquals(0, $data['errcode']);
+        $this->assertEquals('ok', $data['errmsg']);
+    }
+
+    public function testMenuGet()
+    {
+        $data = $this->officialAccount->menuGet();
+        $this->assertTrue(is_array($data['menu']['button']));
     }
 }

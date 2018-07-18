@@ -4,10 +4,9 @@
  * Date: 2018/7/15
  */
 
-namespace Wechat\OfficialAccount;
+namespace Wechat;
 
 use GuzzleHttp\Client;
-use Wechat\WechatProcessor;
 
 /**
  * 微信公众平台
@@ -58,8 +57,8 @@ class OfficialAccount
      * 获取AccessToken
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140183
+     * @throws WechatException
      */
     public function token()
     {
@@ -83,7 +82,7 @@ class OfficialAccount
      * @param array $menu
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141013
      */
     public function menuCreate(array $menu)
@@ -102,7 +101,7 @@ class OfficialAccount
      * 查询自定义菜单
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141014
      */
     public function menuGet()
@@ -117,7 +116,7 @@ class OfficialAccount
      * 删除自定义菜单
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141015
      */
     public function menuDelete()
@@ -134,7 +133,7 @@ class OfficialAccount
      * @param array $menu
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1455782296#0
      */
     public function menuAddConditional(array $menu)
@@ -155,7 +154,7 @@ class OfficialAccount
      * @param $menuId
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1455782296#1
      */
     public function menuDelConditional($menuId)
@@ -176,7 +175,7 @@ class OfficialAccount
      * @param $openid
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1455782296#2
      */
     public function menuTryMatch($openid)
@@ -195,7 +194,7 @@ class OfficialAccount
      * 获取自定义菜单配置接口
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1434698695
      */
     public function getCurrentSelfMenuInfo()
@@ -210,7 +209,7 @@ class OfficialAccount
      * 获取微信服务器IP地址
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140187
      */
     public function getCallbackIp()
@@ -227,7 +226,7 @@ class OfficialAccount
      * @param array $account
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140547
      */
     public function kfAccountAdd(array $account)
@@ -248,7 +247,7 @@ class OfficialAccount
      * @param array $account
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140547
      */
     public function kfAccountUpdate(array $account)
@@ -269,7 +268,7 @@ class OfficialAccount
      * @param array $account
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140547
      */
     public function kfAccountDel(array $account)
@@ -291,7 +290,7 @@ class OfficialAccount
      * @param $filename
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140547
      */
     public function kfAccountUploadHeadImg($account, $filename)
@@ -312,7 +311,7 @@ class OfficialAccount
      * 获取客服列表
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140547
      */
     public function getKfList()
@@ -329,7 +328,7 @@ class OfficialAccount
      * @param array $data
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140547
      */
     public function messageCustomerSend(array $data)
@@ -354,7 +353,7 @@ class OfficialAccount
      * @param $command
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140547
      */
     public function messageCustomerTyping($openid, $command)
@@ -376,7 +375,7 @@ class OfficialAccount
      * @param $industryId2
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433751277
      */
     public function templateSetIndustry($industryId1, $industryId2)
@@ -395,7 +394,7 @@ class OfficialAccount
      * 获取设置的行业信息
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433751277
      */
     public function templateGetIndustry()
@@ -412,7 +411,7 @@ class OfficialAccount
      * @param $shortId
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433751277
      */
     public function templateAddTemplate($shortId)
@@ -431,7 +430,7 @@ class OfficialAccount
      * 获取模板列表
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433751277
      */
     public function templateGetAllPrivate()
@@ -448,7 +447,7 @@ class OfficialAccount
      * @param $templateId
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433751277
      */
     public function templateDelPrivate($templateId)
@@ -469,7 +468,7 @@ class OfficialAccount
      * @param array $data
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433751277
      */
     public function messageSendTemplate(array $data)
@@ -493,7 +492,7 @@ class OfficialAccount
      * @param $type
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141115
      */
     public function getTicket($type)
@@ -545,7 +544,7 @@ class OfficialAccount
      * @param $type
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738726
      */
     public function mediaUpload($filename, $type)
@@ -568,7 +567,7 @@ class OfficialAccount
      * @param $mediaId
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738727
      */
     public function mediaGet($mediaId)
@@ -585,7 +584,7 @@ class OfficialAccount
      * @param array $list
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738729
      */
     public function materialAddNews(array $list)
@@ -606,7 +605,7 @@ class OfficialAccount
      * @param $filename
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738729
      */
     public function mediaUploadImg($filename)
@@ -631,7 +630,7 @@ class OfficialAccount
      * @param array $description
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738729
      */
     public function materialAdd($filename, $type, array $description = [])
@@ -655,7 +654,7 @@ class OfficialAccount
      * @param $mediaId
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738730
      */
     public function materialGet($mediaId)
@@ -676,7 +675,7 @@ class OfficialAccount
      * @param $mediaId
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738731
      */
     public function materialDel($mediaId)
@@ -699,7 +698,7 @@ class OfficialAccount
      * @param array $news
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738732
      */
     public function materialUpdateNews($mediaId, $index, array $news)
@@ -718,7 +717,7 @@ class OfficialAccount
      * 获取素材总数
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738733
      */
     public function materialCount()
@@ -737,7 +736,7 @@ class OfficialAccount
      * @param $count
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738734
      */
     public function materialList($type, $offset, $count)
@@ -758,7 +757,7 @@ class OfficialAccount
      * @param $name
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140837
      */
     public function tagCreate($name)
@@ -777,7 +776,7 @@ class OfficialAccount
      * 获取公众号已创建的标签
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140837
      */
     public function tagAll()
@@ -795,7 +794,7 @@ class OfficialAccount
      * @param $name
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140837
      */
     public function tagUpdate($id, $name)
@@ -816,7 +815,7 @@ class OfficialAccount
      * @param $id
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140837
      */
     public function tagDelete($id)
@@ -838,7 +837,7 @@ class OfficialAccount
      * @param null $nextOpenid
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140837
      */
     public function getUsersByTag($tagId, $nextOpenid = null)
@@ -864,7 +863,7 @@ class OfficialAccount
      * @param array $openids
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140837
      */
     public function setUsersTag($tagId, array $openids)
@@ -886,7 +885,7 @@ class OfficialAccount
      * @param array $openids
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140837
      */
     public function delUsersTag($tagId, array $openids)
@@ -907,7 +906,7 @@ class OfficialAccount
      * @param $openid
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140837
      */
     public function getTagsByOpenid($openid)
@@ -929,7 +928,7 @@ class OfficialAccount
      * @param $remark
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140838
      */
     public function setUserRemark($openid, $remark)
@@ -951,7 +950,7 @@ class OfficialAccount
      * @param string $lang
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140839
      */
     public function getUserInfo($openid, $lang = 'zh_CN')
@@ -968,7 +967,7 @@ class OfficialAccount
      * @param array $users
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140839
      */
     public function batchGetUserInfo(array $users)
@@ -989,7 +988,7 @@ class OfficialAccount
      * @param null $nextOpenid
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140840
      */
     public function getUsers($nextOpenid = null)
@@ -1034,7 +1033,7 @@ class OfficialAccount
      * 通过code换取网页授权access_token
      * @param $code
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842
      */
     public function getOauthAccessToken($code)
@@ -1054,7 +1053,7 @@ class OfficialAccount
      * 刷新access_token（如果需要）
      * @param $refreshToken
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842
      */
     public function refreshOauthAccessToken($refreshToken)
@@ -1075,7 +1074,7 @@ class OfficialAccount
      * @param $openid
      * @param string $lang
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842
      */
     public function getOauthUserInfo($accessToken, $openid, $lang = 'zh_CN')
@@ -1095,7 +1094,7 @@ class OfficialAccount
      * @param $accessToken
      * @param $openid
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842
      */
     public function oauthAuth($accessToken, $openid)
@@ -1115,7 +1114,7 @@ class OfficialAccount
      * @param null $beginOpenid
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1471422259_pJMWA
      */
     public function getBlacklist($beginOpenid = null)
@@ -1140,7 +1139,7 @@ class OfficialAccount
      * @param array $openids
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1471422259_pJMWA
      */
     public function setBlacklist(array $openids)
@@ -1161,7 +1160,7 @@ class OfficialAccount
      * @param array $openids
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1471422259_pJMWA
      */
     public function unsetBlacklist(array $openids)
@@ -1182,7 +1181,7 @@ class OfficialAccount
      * @param array $data
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function qrcodeCreate(array $data)
     {
@@ -1202,7 +1201,7 @@ class OfficialAccount
      * @param $ticket
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1443433542
      */
     public function showQrcode($ticket)
@@ -1222,7 +1221,7 @@ class OfficialAccount
      * @param string $action
      *
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1443433600
      */
     public function shortUrl($url, $action = self::URL_LONG2SHORT)

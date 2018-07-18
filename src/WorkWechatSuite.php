@@ -6,12 +6,10 @@
  * Time: 下午6:57
  */
 
-namespace Wechat\Work;
+namespace Wechat;
 
 
 use GuzzleHttp\Client;
-use Wechat\exception\NotImplementedException;
-use Wechat\WechatProcessor;
 
 abstract class WorkWechatSuite
 {
@@ -50,14 +48,12 @@ abstract class WorkWechatSuite
 
 
     /**
-     * @throws NotImplementedException
      * @return string
      */
     abstract public function getTicket();
 
     /**
      * @param $corpId
-     * @throws NotImplementedException
      * @return string
      */
     abstract public function getPermanentCode($corpId);
@@ -72,8 +68,7 @@ abstract class WorkWechatSuite
     /**
      * 获取第三方应用凭证
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see http://work.weixin.qq.com/api/doc#10975/%E8%8E%B7%E5%8F%96%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%94%E7%94%A8%E5%87%AD%E8%AF%81
      */
     public function getSuiteAccessToken()
@@ -95,8 +90,8 @@ abstract class WorkWechatSuite
     /**
      * 获取预授权码
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws WechatException
+     * @throws WechatException
      */
     public function getPreAuthCode()
     {
@@ -110,8 +105,7 @@ abstract class WorkWechatSuite
      * 获取永久授权码
      * @param $authCode
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
-     * @throws NotImplementedException
+     * @throws \Wechat\WechatException
      */
     public function getPermanentCodeByCode($authCode)
     {
@@ -131,8 +125,7 @@ abstract class WorkWechatSuite
      * 获取企业授权信息
      * @param $corpId
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function getAuthInfo($corpId)
     {
@@ -153,8 +146,7 @@ abstract class WorkWechatSuite
      * 获取公司Token
      * @param $corpId
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function getCorpAccessToken($corpId)
     {
@@ -175,8 +167,7 @@ abstract class WorkWechatSuite
      * 获取管理员列表
      * @param $corpId
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function getAdminList($corpId)
     {
@@ -220,8 +211,7 @@ abstract class WorkWechatSuite
      * 授权TOKEN
      * @param $code
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function getOauthToken($code)
     {
@@ -238,8 +228,7 @@ abstract class WorkWechatSuite
      * 第三方使用user_ticket获取成员详情
      * @param $ticket
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function getOauthUserInfo($ticket)
     {
@@ -258,8 +247,7 @@ abstract class WorkWechatSuite
      * @param $corpId
      * @param array $data
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function createUser($corpId, array $data)
     {
@@ -278,8 +266,7 @@ abstract class WorkWechatSuite
      * @param $corpId
      * @param $userId
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function getUser($corpId, $userId)
     {
@@ -297,8 +284,7 @@ abstract class WorkWechatSuite
      * @param $corpId
      * @param array $data
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function updateUser($corpId, array $data)
     {
@@ -317,8 +303,7 @@ abstract class WorkWechatSuite
      * @param $corpId
      * @param $userId
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function deleteUser($corpId, $userId)
     {
@@ -336,8 +321,7 @@ abstract class WorkWechatSuite
      * @param $corpId
      * @param array $userIds
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function batchDeleteUser($corpId, array $userIds)
     {
@@ -357,8 +341,7 @@ abstract class WorkWechatSuite
      * @param $departmentId
      * @param int $fetchChild
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function getUserSimpleList($corpId, $departmentId, $fetchChild = 0)
     {
@@ -378,8 +361,7 @@ abstract class WorkWechatSuite
      * @param $departmentId
      * @param int $fetchChild
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function getUserList($corpId, $departmentId, $fetchChild = 0)
     {
@@ -401,8 +383,7 @@ abstract class WorkWechatSuite
      * @param int $id
      * @param int $order
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function createDepartment($corpId, $name, $parentId, $id = 0, $order = 0)
     {
@@ -429,8 +410,7 @@ abstract class WorkWechatSuite
      * @param $parentId
      * @param int $order
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function updateDepartment($corpId, $id, $name, $parentId, $order = 0)
     {
@@ -454,8 +434,7 @@ abstract class WorkWechatSuite
      * @param $corpId
      * @param $id
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function deleteDepartment($corpId, $id)
     {
@@ -473,8 +452,7 @@ abstract class WorkWechatSuite
      * @param $corpId
      * @param int $id
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function departmentList($corpId, $id = 0)
     {
@@ -492,8 +470,7 @@ abstract class WorkWechatSuite
      * @param $corpId
      * @param array $data
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function batchInvite($corpId, array $data)
     {
@@ -512,8 +489,7 @@ abstract class WorkWechatSuite
      * @param $corpId
      * @param array $data
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function sendMessage($corpId, array $data)
     {
@@ -534,8 +510,7 @@ abstract class WorkWechatSuite
      * @param $filename
      * @param $type
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function uploadMedia($corpId, $filename, $type)
     {
@@ -556,8 +531,7 @@ abstract class WorkWechatSuite
      * @param $corpId
      * @param $mediaId
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function getMedia($corpId, $mediaId)
     {
@@ -572,8 +546,7 @@ abstract class WorkWechatSuite
      * @param $corpId
      * @param $mediaId
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function getMediaByJsSDK($corpId, $mediaId)
     {

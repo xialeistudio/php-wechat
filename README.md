@@ -4,10 +4,11 @@
 
 ## 平台
 
-+ [ ] 微信公众平台 src/mp
-+ [ ] 小程序 src/miniprogram
-+ [ ] 开放平台 src/open
-+ [ ] 企业微信 src/work
++ [x] 微信公众平台 src/OfficialAccount
++ [ ] 小程序 src/MiniProgram
++ [x] 开放平台 src/OpenWechat
++ [x] 企业微信 src/WorkWechat
++ [ ] 微信AES加解密
 
 ## License
 

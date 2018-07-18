@@ -6,12 +6,10 @@
  * Time: 下午4:26
  */
 
-namespace Wechat\Open;
+namespace Wechat;
 
 
 use GuzzleHttp\Client;
-use Wechat\exception\NotImplementedException;
-use Wechat\WechatProcessor;
 
 /**
  * 开放平台
@@ -55,14 +53,12 @@ abstract class OpenWechat
 
     /**
      * 建议从缓存读取
-     * @throws NotImplementedException
      * @return string
      */
     abstract public function getTicket();
 
     /**
      * @param $appid
-     * @throws NotImplementedException
      * @return string
      */
     abstract public function getAuthorizerAccessToken($appid);
@@ -74,8 +70,7 @@ abstract class OpenWechat
      * @param null $bizAppid
      * @return string
      * @see https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1453779503&token=&lang=zh_CN
-     * @throws \Wechat\exception\WechatException
-     * @throws NotImplementedException
+     * @throws \Wechat\WechatException
      */
     public function makeWebBindUrl($callback, $authType, $bizAppid = null)
     {
@@ -98,8 +93,7 @@ abstract class OpenWechat
      * @param $authType
      * @param null $bizAppid
      * @return string
-     * @throws \Wechat\exception\WechatException
-     * @throws NotImplementedException
+     * @throws \Wechat\WechatException
      */
     public function makeMobileBindUrl($callback, $authType, $bizAppid = null)
     {
@@ -120,9 +114,8 @@ abstract class OpenWechat
     /**
      * 获取第三方平台component_access_token
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1453779503&token=&lang=zh_CN
-     * @throws NotImplementedException
      */
     public function getComponentAccessToken()
     {
@@ -143,8 +136,7 @@ abstract class OpenWechat
     /**
      * 获取预授权码
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
-     * @throws NotImplementedException
+     * @throws \Wechat\WechatException
      */
     public function getComponentPreAuthCode()
     {
@@ -163,8 +155,7 @@ abstract class OpenWechat
      * 使用授权码换取公众号或小程序的接口调用凭据和授权信息
      * @param $code
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
-     * @throws NotImplementedException
+     * @throws \Wechat\WechatException
      */
     public function getAuthorizationInfo($code)
     {
@@ -183,8 +174,7 @@ abstract class OpenWechat
      * @param $appid
      * @param $refreshToken
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
-     * @throws NotImplementedException
+     * @throws \Wechat\WechatException
      */
     public function refreshAuthorizerToken($appid, $refreshToken)
     {
@@ -206,8 +196,7 @@ abstract class OpenWechat
      * 获取授权方的帐号基本信息
      * @param $appid
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
-     * @throws NotImplementedException
+     * @throws \Wechat\WechatException
      */
     public function getAuthorizerInfo($appid)
     {
@@ -229,8 +218,7 @@ abstract class OpenWechat
      * @param $appid
      * @param $option
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
-     * @throws NotImplementedException
+     * @throws \Wechat\WechatException
      */
     public function getAuthorizerOption($appid, $option)
     {
@@ -254,8 +242,7 @@ abstract class OpenWechat
      * @param $option
      * @param $value
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
-     * @throws NotImplementedException
+     * @throws \Wechat\WechatException
      */
     public function setAuthorizerOption($appid, $option, $value)
     {
@@ -278,8 +265,7 @@ abstract class OpenWechat
      * 清零API次数
      * @param $appid
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
-     * @throws NotImplementedException
+     * @throws \Wechat\WechatException
      */
     public function clearQuota($appid)
     {
@@ -323,8 +309,7 @@ abstract class OpenWechat
      * @param $appid
      * @param $code
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
-     * @throws NotImplementedException
+     * @throws \Wechat\WechatException
      */
     public function getOauthAccessToken($appid, $code)
     {
@@ -345,8 +330,7 @@ abstract class OpenWechat
      * @param $appid
      * @param $refreshToken
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
-     * @throws NotImplementedException
+     * @throws \Wechat\WechatException
      */
     public function refreshOauthAccessToken($appid, $refreshToken)
     {
@@ -368,7 +352,7 @@ abstract class OpenWechat
      * @param $openid
      * @param string $lang
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function getOauthUserInfo($accessToken, $openid, $lang = 'zh_CN')
     {
@@ -391,8 +375,7 @@ abstract class OpenWechat
      * @param array $download
      * @param string $action
      * @return mixed
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1489138143_WPbOO&token=&lang=zh_CN
      */
     public function wxaModifyDomain($appid, array $request, array $wsRequest, array $upload, array $download, $action = 'add')
@@ -419,8 +402,7 @@ abstract class OpenWechat
      * @param array $domains
      * @param string $action
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1489138143_WPbOO&token=&lang=zh_CN
      */
     public function wxaSetWebviewDomain($appid, array $domains, $action = 'add')
@@ -446,8 +428,7 @@ abstract class OpenWechat
      * @param $version
      * @param $desc
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      * @see https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1489140610_Uavc4&token=&lang=zh_CN
      */
     public function wxaCommit($appid, $templateId, array $ext, $version, $desc)
@@ -472,8 +453,7 @@ abstract class OpenWechat
      * @param $appid
      * @param $path
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function wxaGetQrcode($appid, $path)
     {
@@ -490,8 +470,7 @@ abstract class OpenWechat
      * 获取授权小程序帐号的可选类目
      * @param $appid
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function wxaGetCategory($appid)
     {
@@ -507,8 +486,7 @@ abstract class OpenWechat
      * 获取小程序的第三方提交代码的页面配置（仅供第三方开发者代小程序调用）
      * @param $appid
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function wxaGetPage($appid)
     {
@@ -525,8 +503,7 @@ abstract class OpenWechat
      * @param $appid
      * @param array $pages
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function wxaSubmitAudit($appid, array $pages)
     {
@@ -545,8 +522,7 @@ abstract class OpenWechat
      * @param $appid
      * @param $auditId
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function wxaGetAuditStatus($appid, $auditId)
     {
@@ -564,8 +540,7 @@ abstract class OpenWechat
      * 查询最新一次提交的审核状态（仅供第三方代小程序调用）
      * @param $appid
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function wxaGetLatestAuditStatus($appid)
     {
@@ -579,8 +554,7 @@ abstract class OpenWechat
      * 发布已通过审核的小程序（仅供第三方代小程序调用）
      * @param $appid
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function wxaRelease($appid)
     {
@@ -598,8 +572,7 @@ abstract class OpenWechat
      * @param $appid
      * @param $status
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function wxaChangeVisible($appid, $status)
     {
@@ -617,8 +590,7 @@ abstract class OpenWechat
      * 小程序版本回退（仅供第三方代小程序调用）
      * @param $appid
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function wxaRevert($appid)
     {
@@ -632,8 +604,7 @@ abstract class OpenWechat
      * 查询当前设置的最低基础库版本及各版本用户占比 （仅供第三方代小程序调用）
      * @param $appid
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function getWeAppSupportVersion($appid)
     {
@@ -648,8 +619,7 @@ abstract class OpenWechat
      * @param $appid
      * @param $version
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function setWeAppSupportVersion($appid, $version)
     {
@@ -667,8 +637,7 @@ abstract class OpenWechat
      * 小程序撤回审核
      * @param $appid
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function wxaUndoAudit($appid)
     {
@@ -683,8 +652,7 @@ abstract class OpenWechat
      * @param $appid
      * @param $percentage
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function wxaGrayRelease($appid, $percentage)
     {
@@ -702,8 +670,7 @@ abstract class OpenWechat
      * 取消分阶段发布
      * @param $appid
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function wxaRevertGrayRelease($appid)
     {
@@ -717,8 +684,7 @@ abstract class OpenWechat
      * 查询当前分阶段发布详情
      * @param $appid
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function wxaGetGrayReleasePlan($appid)
     {
@@ -731,8 +697,7 @@ abstract class OpenWechat
     /**
      * 获取草稿箱内的所有临时代码草稿
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function wxaGetTemplateDrafts()
     {
@@ -745,8 +710,7 @@ abstract class OpenWechat
     /**
      * 获取代码模版库中的所有小程序代码模版
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function wxaGetTemplates()
     {
@@ -760,8 +724,7 @@ abstract class OpenWechat
      * 将草稿箱的草稿选为小程序代码模版
      * @param $draftId
      * @return mixed|string
-     * @throws \Wechat\exception\WechatException
-     * @throws NotImplementedException
+     * @throws \Wechat\WechatException
      */
     public function wxaAddToTemplate($draftId)
     {
@@ -780,8 +743,7 @@ abstract class OpenWechat
      * 删除指定小程序代码模版
      * @param $templateId
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function wxaDeleteTemplate($templateId)
     {
@@ -801,8 +763,7 @@ abstract class OpenWechat
      * @param $appid
      * @param $code
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function getSessionByJsCode($appid, $code)
     {
@@ -824,8 +785,7 @@ abstract class OpenWechat
      * @param int $offset
      * @param int $count
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function getTemplateLibrary($appid, $offset = 0, $count = 10)
     {
@@ -844,8 +804,7 @@ abstract class OpenWechat
      * @param $appid
      * @param $shortId
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function getTemplateKeyword($appid, $shortId)
     {
@@ -865,8 +824,7 @@ abstract class OpenWechat
      * @param $shortId
      * @param array $keywords
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function addTemplate($appid, $shortId, array $keywords)
     {
@@ -886,8 +844,7 @@ abstract class OpenWechat
      * @param int $offset
      * @param int $count
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function getTemplates($appid, $offset = 0, $count = 10)
     {
@@ -906,8 +863,7 @@ abstract class OpenWechat
      * @param $appid
      * @param $templateId
      * @return mixed|string
-     * @throws NotImplementedException
-     * @throws \Wechat\exception\WechatException
+     * @throws \Wechat\WechatException
      */
     public function delTemplate($appid, $templateId)
     {

@@ -7,7 +7,6 @@
 namespace Wechat;
 
 use Psr\Http\Message\ResponseInterface;
-use Wechat\exception\WechatException;
 
 /**
  * Wechat Request/Response Processor

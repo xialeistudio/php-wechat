@@ -41,4 +41,44 @@ class OfficialAccountTest extends TestCase
         $data = $this->officialAccount->token();
         $this->assertTrue(is_string($data));
     }
+/// 微信一个月限制，测试已通过
+//    public function testTemplateSetIndustry()
+//    {
+//        $data = $this->officialAccount->templateSetIndustry(1, 2);
+//        $this->assertEquals(0, $data['errcode']);
+//    }
+
+    public function testTemplateGetIndustry()
+    {
+        $data = $this->officialAccount->templateGetIndustry();
+        $this->assertArrayHasKey('primary_industry', $data);
+        $this->assertArrayHasKey('secondary_industry', $data);
+    }
+
+    public function testTemplateAddTemplate()
+    {
+        // add
+        $data = $this->officialAccount->templateAddTemplate('TM00001');
+        $this->assertEquals(0, $data['errcode']);
+        $this->assertArrayHasKey('template_id', $data);
+        $templateId = $data['template_id'];
+        // sendTemplate
+        $data = $this->officialAccount->messageSendTemplate([
+            'touser' => getenv('OFFICIAL_ACCOUNT_OPENID'),
+            'template_id' => $templateId,
+            'url' => 'https://www.ddhigh.com',
+            'data' => [
+                'name' => [
+                    'value' => 'ThinkPHP实战'
+                ],
+                'remark' => [
+                    'value' => '谢谢您的支持'
+                ]
+            ]
+        ]);
+        $this->assertEquals(0, $data['errcode']);
+        // delTemplate
+        $data = $this->officialAccount->templateDelPrivate($templateId);
+        $this->assertEquals(0, $data['errcode']);
+    }
 }

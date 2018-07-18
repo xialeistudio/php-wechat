@@ -8,7 +8,11 @@
 
 namespace Wechat\crypto;
 
-
+/**
+ * 微信XML加解密
+ * Class WXBizMsgCrypt
+ * @package Wechat\crypto
+ */
 class WXBizMsgCrypt
 {
     const ERROR_NONE = 0;

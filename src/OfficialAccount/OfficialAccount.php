@@ -1004,6 +1004,111 @@ class OfficialAccount
         return $this->handleResponse($response);
     }
 
+    const SCOPE_BASE = 'snsapi_base';
+    const SCOPE_USERINFO = 'snsapi_userinfo';
+
+    /**
+     * 构造授权链接
+     *
+     * @param $callback
+     * @param $scope
+     * @param $state
+     *
+     * @return string
+     * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842
+     */
+    public function buildOauthUrl($callback, $scope, $state)
+    {
+        $baseUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?';
+        $params = [
+            'appid' => $this->appid,
+            'redirect_uri' => $callback,
+            'response_type' => 'code',
+            'scope' => $scope,
+            'state' => $state
+        ];
+        return $baseUrl . http_build_query($params) . '#wechat_redirect';
+    }
+
+    /**
+     * 通过code换取网页授权access_token
+     * @param $code
+     * @return mixed|string
+     * @throws \Wechat\WechatException
+     * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842
+     */
+    public function getOauthAccessToken($code)
+    {
+        $response = $this->client->get('/sns/oauth2/access_token', [
+            'query' => [
+                'appid' => $this->appid,
+                'secret' => $this->secret,
+                'code' => $code,
+                'grant_type' => 'authorization_code'
+            ]
+        ]);
+        return $this->handleResponse($response);
+    }
+
+    /**
+     * 刷新access_token（如果需要）
+     * @param $refreshToken
+     * @return mixed|string
+     * @throws \Wechat\WechatException
+     * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842
+     */
+    public function refreshOauthAccessToken($refreshToken)
+    {
+        $response = $this->client->get('/sns/oauth2/refresh_token', [
+            'query' => [
+                'appid' => $this->appid,
+                'grant_type' => 'refresh_token',
+                'refresh_token' => $refreshToken
+            ]
+        ]);
+        return $this->handleResponse($response);
+    }
+
+    /**
+     * 拉取用户信息(需scope为 snsapi_userinfo)
+     * @param $accessToken
+     * @param $openid
+     * @param string $lang
+     * @return mixed|string
+     * @throws \Wechat\WechatException
+     * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842
+     */
+    public function getOauthUserInfo($accessToken, $openid, $lang = 'zh_CN')
+    {
+        $response = $this->client->get('/sns/userinfo', [
+            'query' => [
+                'access_token' => $accessToken,
+                'openid' => $openid,
+                'lang' => $lang
+            ]
+        ]);
+        return $this->handleResponse($response);
+    }
+
+    /**
+     * 检验授权凭证（access_token）是否有效
+     * @param $accessToken
+     * @param $openid
+     * @return mixed|string
+     * @throws \Wechat\WechatException
+     * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842
+     */
+    public function oauthAuth($accessToken, $openid)
+    {
+        $response = $this->client->get('/sns/auth', [
+            'query' => [
+                'access_token' => $accessToken,
+                'openid' => $openid,
+            ]
+        ]);
+        return $this->handleResponse($response);
+    }
+
     /**
      * 获取公众号的黑名单列表
      *

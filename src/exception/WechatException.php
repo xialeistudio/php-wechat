@@ -4,7 +4,7 @@
  * Date: 2018/7/15
  */
 
-namespace Wechat;
+namespace Wechat\exception;
 
 /**
  * 微信异常类

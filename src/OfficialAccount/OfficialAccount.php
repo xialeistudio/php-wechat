@@ -63,7 +63,7 @@ class OfficialAccount
      */
     public function token()
     {
-        if (isset($this->accessToken)) {
+        if (!empty($this->accessToken)) {
             return $this->accessToken;
         }
         $response = $this->client->get('/cgi-bin/token', [

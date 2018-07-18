@@ -18,7 +18,7 @@ use Wechat\WechatProcessor;
  * Class OpenWechat
  * @package Wechat\Open
  */
-class OpenWechat
+abstract class OpenWechat
 {
     use WechatProcessor;
     protected $appid;
@@ -58,20 +58,14 @@ class OpenWechat
      * @throws NotImplementedException
      * @return string
      */
-    public function getTicket()
-    {
-        throw new NotImplementedException(__METHOD__ . ' 未重写!');
-    }
+    abstract public function getTicket();
 
     /**
      * @param $appid
      * @throws NotImplementedException
      * @return string
      */
-    public function getAuthorizerAccessToken($appid)
-    {
-        throw new NotImplementedException(__METHOD__ . ' 未重写!');
-    }
+    abstract public function getAuthorizerAccessToken($appid);
 
     /**
      * 构造PC绑定链接

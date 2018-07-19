@@ -2,7 +2,7 @@
   "name": "xialeistudio/wechat",
   "description": "wechat develop sdk",
   "type": "library",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "require": {
     "php": ">=7",
     "guzzlehttp/guzzle": "^6.3"
@@ -24,7 +24,6 @@
       "Wechat\\Tests\\": "tests/"
     }
   },
-  "minimum-stability": "stable",
   "require-dev": {
     "vlucas/phpdotenv": "^2.5",
     "phpunit/phpunit": "^5"

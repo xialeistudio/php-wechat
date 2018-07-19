@@ -49,7 +49,7 @@ class NewsResponseBuilder extends ResponseBuilder
 XML;
         $newsContent = [];
         foreach ($this->news as $news) {
-            $placeholder = <<<XML
+            $tmp = <<<XML
 <item>
 <Title><![CDATA[%s]]></Title>
 <Description><![CDATA[%s]]></Description>
@@ -57,7 +57,7 @@ XML;
 <Url><![CDATA[%s]]></Url>
 </item>
 XML;
-            $newsContent[] = sprintf($placeholder, $news['title'], $news['description'], $news['pic_url'], $news['url']);
+            $newsContent[] = sprintf($tmp, $news['title'], $news['description'], $news['pic_url'], $news['url']);
         }
         return sprintf(
             $placeholder,

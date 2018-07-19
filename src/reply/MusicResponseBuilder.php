@@ -87,7 +87,7 @@ class MusicResponseBuilder extends ResponseBuilder
 <Music>
 <Title><![CDATA[%s]]></Title>
 <Description><![CDATA[%s]]></Description>
-<MusicURL><![CDATA[%s]]></MusicURL>
+<MusicUrl><![CDATA[%s]]></MusicUrl>
 <HQMusicUrl><![CDATA[%s]]></HQMusicUrl>
 <ThumbMediaId><![CDATA[%s]]></ThumbMediaId>
 </Music>

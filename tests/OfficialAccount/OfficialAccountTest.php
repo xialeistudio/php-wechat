@@ -31,21 +31,24 @@ class OfficialAccountTest extends TestCase
 
         $this->officialAccount = new OfficialAccount(
             getenv('OFFICIAL_ACCOUNT_APPID'),
-            getenv('OFFICIAL_ACCOUNT_SECRET')
+            getenv('OFFICIAL_ACCOUNT_SECRET'),
+            ''
         );
     }
 
-//    public function testToken()
-//    {
-//        $data = $this->officialAccount->accessToken();
-//        $this->assertTrue(is_string($data));
-//    }
-/// 微信一个月限制，测试已通过
-//    public function testTemplateSetIndustry()
-//    {
-//        $data = $this->officialAccount->templateSetIndustry(1, 2);
-//        $this->assertEquals(0, $data['errcode']);
-//    }
+    public function testToken()
+    {
+        $this->markTestIncomplete('微信Token刷新限制，测试已通过');
+        $data = $this->officialAccount->accessToken();
+        $this->assertTrue(is_string($data));
+    }
+
+    public function testTemplateSetIndustry()
+    {
+        $this->markTestIncomplete('微信一个月限制，测试已通过');
+        $data = $this->officialAccount->templateSetIndustry(1, 2, '');
+        $this->assertEquals(0, $data['errcode']);
+    }
 
     public function testTemplateGetIndustry()
     {

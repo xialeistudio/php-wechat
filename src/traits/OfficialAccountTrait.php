@@ -29,12 +29,7 @@ trait OfficialAccountTrait
 
     public function __construct(array $options = [])
     {
-        if (!$this->client) {
-            $this->client = new Client([
-                'base_uri' => 'https://api.weixin.qq.com'
-            ]);
-        }
-        return $this->client;
+        $this->client = new Client(['base_uri' => 'https://api.weixin.qq.com']);
     }
 
     /**
@@ -450,7 +445,7 @@ trait OfficialAccountTrait
      * @throws WechatException
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433751277
      */
-    public function messageSendTemplate(array $data, $accessToken)
+    public function messageTemplateSend(array $data, $accessToken)
     {
         $response = $this->client->post('/cgi-bin/message/template/send', [
             'query' => ['access_token' => $accessToken],

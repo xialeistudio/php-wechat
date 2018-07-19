@@ -877,4 +877,23 @@ abstract class OpenWechat
         ]);
         return $this->handleResponse($response);
     }
+
+    /**
+     * 发送模板消息
+     * @param $appid
+     * @param array $data
+     * @return mixed|string
+     * @throws \Wechat\WechatException
+     */
+    public function messageTemplateSend($appid, array $data)
+    {
+        $response = $this->client->post('/cgi-bin/message/wxopen/template/send', [
+            'query' => ['access_token' => static::getAuthorizerAccessToken($appid)],
+            'body' => $this->jsonEncode($data),
+            'headers' => [
+                'Content-Type' => 'application/json'
+            ]
+        ]);
+        return $this->handleResponse($response);
+    }
 }

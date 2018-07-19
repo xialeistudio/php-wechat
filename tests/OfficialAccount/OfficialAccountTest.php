@@ -65,7 +65,7 @@ class OfficialAccountTest extends TestCase
         $this->assertArrayHasKey('template_id', $data);
         $templateId = $data['template_id'];
         // sendTemplate
-        $data = $this->officialAccount->messageSendTemplate([
+        $data = $this->officialAccount->messageTemplateSend([
             'touser' => getenv('OFFICIAL_ACCOUNT_OPENID'),
             'template_id' => $templateId,
             'url' => 'https://www.ddhigh.com',

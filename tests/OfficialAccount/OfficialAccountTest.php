@@ -9,7 +9,7 @@ namespace Wechat\Tests;
 
 use Dotenv\Dotenv;
 use PHPUnit\Framework\TestCase;
-use Wechat\OfficialAccount\OfficialAccount;
+use Wechat\official_account\OfficialAccount;
 
 /**
  * 公众平台单元测试
@@ -31,16 +31,15 @@ class OfficialAccountTest extends TestCase
 
         $this->officialAccount = new OfficialAccount(
             getenv('OFFICIAL_ACCOUNT_APPID'),
-            getenv('OFFICIAL_ACCOUNT_SECRET'),
-            ['token' => getenv('OFFICIAL_ACCOUNT_TOKEN')]
+            getenv('OFFICIAL_ACCOUNT_SECRET')
         );
     }
 
-    public function testToken()
-    {
-        $data = $this->officialAccount->token();
-        $this->assertTrue(is_string($data));
-    }
+//    public function testToken()
+//    {
+//        $data = $this->officialAccount->accessToken();
+//        $this->assertTrue(is_string($data));
+//    }
 /// 微信一个月限制，测试已通过
 //    public function testTemplateSetIndustry()
 //    {
@@ -50,7 +49,7 @@ class OfficialAccountTest extends TestCase
 
     public function testTemplateGetIndustry()
     {
-        $data = $this->officialAccount->templateGetIndustry();
+        $data = $this->officialAccount->templateGetIndustry(getenv('OFFICIAL_ACCOUNT_TOKEN'));
         $this->assertArrayHasKey('primary_industry', $data);
         $this->assertArrayHasKey('secondary_industry', $data);
     }
@@ -58,7 +57,7 @@ class OfficialAccountTest extends TestCase
     public function testTemplateAddTemplate()
     {
         // add
-        $data = $this->officialAccount->templateAddTemplate('TM00001');
+        $data = $this->officialAccount->templateAddTemplate('TM00001', getenv('OFFICIAL_ACCOUNT_TOKEN'));
         $this->assertEquals(0, $data['errcode']);
         $this->assertArrayHasKey('template_id', $data);
         $templateId = $data['template_id'];
@@ -75,10 +74,10 @@ class OfficialAccountTest extends TestCase
                     'value' => '谢谢您的支持'
                 ]
             ]
-        ]);
+        ], getenv('OFFICIAL_ACCOUNT_TOKEN'));
         $this->assertEquals(0, $data['errcode']);
         // delTemplate
-        $data = $this->officialAccount->templateDelPrivate($templateId);
+        $data = $this->officialAccount->templateDelPrivate($templateId, getenv('OFFICIAL_ACCOUNT_TOKEN'));
         $this->assertEquals(0, $data['errcode']);
     }
 }

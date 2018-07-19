@@ -4,7 +4,9 @@
  * Date: 2018/7/15
  */
 
-namespace Wechat;
+namespace Wechat\official_account;
+
+use Wechat\traits\OfficialAccountTrait;
 
 /**
  * 微信公众平台
@@ -20,11 +22,6 @@ class OfficialAccount
     }
     protected $appid;
     protected $secret;
-
-    /**
-     * @var string access_token only for tests!
-     */
-    private $accessToken = null;
 
     /**
      * OfficialAccount constructor.
@@ -45,13 +42,10 @@ class OfficialAccount
      *
      * @return mixed|string
      * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140183
-     * @throws WechatException
+     * @throws \Wechat\WechatException
      */
     public function accessToken()
     {
-        if (!empty($this->accessToken)) {
-            return $this->accessToken;
-        }
         $response = $this->client->get('/cgi-bin/token', [
             'query' => [
                 'grant_type' => 'client_credential',

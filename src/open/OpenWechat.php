@@ -6,10 +6,11 @@
  * Time: 下午4:26
  */
 
-namespace Wechat;
+namespace Wechat\open;
 
 
 use GuzzleHttp\Client;
+use Wechat\WechatProcessor;
 
 /**
  * 开放平台

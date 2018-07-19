@@ -6,10 +6,12 @@
  * Time: 上午9:31
  */
 
-namespace Wechat;
+namespace Wechat\traits;
 
 
 use GuzzleHttp\Client;
+use Wechat\WechatProcessor;
+use Wechat\WechatException;
 
 /**
  * 公众号混入

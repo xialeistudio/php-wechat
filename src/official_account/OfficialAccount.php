@@ -6,6 +6,7 @@
 
 namespace Wechat\official_account;
 
+use Wechat\crypto\XmlCodec;
 use Wechat\traits\OfficialAccountTrait;
 
 /**
@@ -28,9 +29,10 @@ class OfficialAccount
      *
      * @param       $appid
      * @param       $secret
+     * @param $token
      * @param array $options
      */
-    public function __construct($appid, $secret, array $options = [])
+    public function __construct($appid, $secret, $token, array $options = [])
     {
         $this->appid = $appid;
         $this->secret = $secret;
@@ -94,5 +96,35 @@ class OfficialAccount
             ]
         ]);
         return $this->handleResponse($response);
+    }
+
+    /**
+     * 检测被动回复的签名
+     * @param $signature
+     * @param $timestamp
+     * @param $nonce
+     * @return bool
+     */
+    public function checkReplySignature($signature, $timestamp, $nonce)
+    {
+        $data = [$timestamp, $nonce];
+        sort($data, SORT_STRING | SORT_ASC);
+        return $signature == sha1(implode($data));
+    }
+
+    /**
+     * 微信被动回复
+     * @param string $xml 微信请求XML(明文)
+     * @param \Closure $callback
+     * @return mixed|string
+     */
+    public function reply($xml, \Closure $callback)
+    {
+        if (!empty($_GET['echostr'])) {
+            return $this->checkReplySignature($_GET['signature'], $_GET['timestamp'], $_GET['nonce']) ? $_GET['echostr'] : '';
+        }
+        $data = XmlCodec::decode($xml);
+        $response = $callback($data);
+        return $response;
     }
 }

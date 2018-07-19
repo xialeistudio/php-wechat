@@ -1,31 +1,32 @@
 {
-    "name": "xialeistudio/wechat",
-    "description": "wechat develop sdk",
-    "type": "library",
-    "require": {
-        "php": ">=7",
-        "guzzlehttp/guzzle": "^6.3"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "xialeistudio",
-            "email": "xialeistudio@gmail.com"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "Wechat\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Wechat\\Tests\\": "tests/"
-        }
-    },
-    "minimum-stability": "stable",
-    "require-dev": {
-        "vlucas/phpdotenv": "^2.5",
-        "phpunit/phpunit": "^5"
+  "name": "xialeistudio/wechat",
+  "description": "wechat develop sdk",
+  "type": "library",
+  "version": "1.0.0",
+  "require": {
+    "php": ">=7",
+    "guzzlehttp/guzzle": "^6.3"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "xialeistudio",
+      "email": "xialeistudio@gmail.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Wechat\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Wechat\\Tests\\": "tests/"
+    }
+  },
+  "minimum-stability": "stable",
+  "require-dev": {
+    "vlucas/phpdotenv": "^2.5",
+    "phpunit/phpunit": "^5"
+  }
 }
